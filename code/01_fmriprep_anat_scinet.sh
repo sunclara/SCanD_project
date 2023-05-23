@@ -42,7 +42,7 @@ export SING_CONTAINER=${BASEDIR}/containers/fmriprep-20.1.1.simg
 export OUTPUT_DIR=${BASEDIR}/data/local/ # use if version of fmriprep <=20.1
 
 # export LOCAL_FREESURFER_DIR=${SCRATCH}/${STUDY}/data/derived/freesurfer-6.0.1
-export WORK_DIR=${BBUFFER}/SCanD/fmriprep
+export WORK_DIR=/scratch/a/arisvoin/clarasun/TEMP # changed directory from "BBUFFER" to remote directory called "TEMP"
 export LOGS_DIR=${BASEDIR}/logs
 mkdir -vp ${OUTPUT_DIR} ${WORK_DIR} # ${LOCAL_FREESURFER_DIR}
 
