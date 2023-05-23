@@ -76,6 +76,7 @@ singularity run --cleanenv \
     --use-aroma \
     --notrack \
     --use-syn-sdc \
+    -t --VLD \ # Added task we chose to test the script on one task to start (VLD = verbal, large reward, delayed feedback)
     --ignore fieldmaps
 
 exitcode=$?
