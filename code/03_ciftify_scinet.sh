@@ -12,6 +12,10 @@ export THREADS_PER_COMMAND=2
 
 module load gnu-parallel/20191122
 
+## create subject string
+sub = `index`
+sub = $(echo "$SUB_SIZE" | tr -d 'r')
+
 ####----### the next bit only works IF this script is submitted from the $BASEDIR/$OPENNEURO_DS folder...
 
 ## set the second environment variable to get the base directory
@@ -39,7 +43,7 @@ export SING_CONTAINER=${BASEDIR}/containers/fmriprep_ciftity-v1.3.2-2.3.3.simg
 
 
 ## setting up the output folders
-export OUTPUT_DIR=${BASEDIR}/data/local/
+export OUTPUT_DIR=${BASEDIR}/data/local/ciftify/sub-${SUB-SIZE}/MNINonLinear/Results
 export LOGS_DIR=${BASEDIR}/logs
 mkdir -vp ${OUTPUT_DIR} ${WORK_DIR} # ${LOCAL_FREESURFER_DIR}
 
