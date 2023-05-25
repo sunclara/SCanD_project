@@ -12,10 +12,6 @@ export THREADS_PER_COMMAND=2
 
 module load gnu-parallel/20191122
 
-## create subject string
-sub = `index`
-sub = $(echo "$SUB_SIZE" | tr -d 'r')
-
 ####----### the next bit only works IF this script is submitted from the $BASEDIR/$OPENNEURO_DS folder...
 
 ## set the second environment variable to get the base directory
