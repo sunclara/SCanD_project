@@ -35,6 +35,7 @@ export BIDS_DIR=${BASEDIR}/data/local/bids
 ## see notebooks/00_setting_up_envs.md for the set up instructions
 export FMRIPREP_HOME=${BASEDIR}/templates
 export SING_CONTAINER=${BASEDIR}/containers/fmriprep-20.1.1.simg
+export FMRIPREP_ANAT=${BASEDIR}/data/local/fmriprep_anat ## added line to try to fix issue where func files are not showing up for subjects after sub-10
 
 ## setting up the output folders
 # export OUTPUT_DIR=${BASEDIR}/data/local/fmriprep  # use if version of fmriprep >=20.2
@@ -58,16 +59,18 @@ export SINGULARITYENV_FS_LICENSE=/home/fmriprep/.freesurfer.txt
 #     find ${LOCAL_FREESURFER_DIR}/sub-$subject/ -name "*IsRunning*" -type f -delete
 # done
 
-
+# added lines 68, 73
 singularity run --cleanenv \
     -B ${BASEDIR}/templates:/home/fmriprep --home /home/fmriprep \
     -B ${BIDS_DIR}:/bids \
     -B ${OUTPUT_DIR}:/derived \
     -B ${WORK_DIR}:/work \
+    -B ${FMRIPREP_ANAT}:/fmriprep_anat \
     ${SING_CONTAINER} \
     /bids /derived participant \
     --participant_label ${SUBJECTS} \
     -w /work \
+    --anat-derivatives /fmriprep_anat \
     --skip-bids-validation \
     --omp-nthreads 8 \
     --nthreads 40 \
