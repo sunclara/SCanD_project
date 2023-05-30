@@ -7,6 +7,7 @@
 
 
 SUB_SIZE=79 ## number of subjects to run -- do we change this to 79 subjects because our dataset has 79 subjects in total?
+# sub_size is the number of subjects that runs on each node - decrease if jobs are not running
 export THREADS_PER_COMMAND=2
 
 ####----### the next bit only works IF this script is submitted from the $BASEDIR/$OPENNEURO_DS folder...
