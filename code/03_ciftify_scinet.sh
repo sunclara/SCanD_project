@@ -6,7 +6,7 @@
 #SBATCH --time=12:00:00
 
 
-SUB_SIZE=79 ## number of subjects to run - UPDATE TO 79 SUBJECTS
+SUB_SIZE=8 ## number of subjects to run - UPDATE TO 79 SUBJECTS - UPDATED back to 8 subjects
 CORES=40
 export THREADS_PER_COMMAND=2
 
