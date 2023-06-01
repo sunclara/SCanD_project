@@ -62,7 +62,7 @@ run_parcellation() {
     # determine the output filenames based on the input filename
     func_base=$(basename $(dirname ${dtseries}))
     sub=$(basename $(dirname $(dirname $(dirname $(dirname ${dtseries})))))
-    task=$(echo $func_base | sed 's/_desc-preproc//g')
+    ses_task=$(echo $func_base | sed 's/_desc-preproc//g')
 
     if [[ "$dtseries" == *"ses"* ]]; then
 
@@ -71,13 +71,12 @@ run_parcellation() {
 
     else
         ses=""
-        ses_=""
 
     fi
 
-    cleaned_dtseries=cifti_clean/${sub}/${ses}/func/${sub}_${ses_}${task}_space-fsLR_den-91k_desc-cleaneds0_bold.dtseries.nii
-    output_ptseries=parcellated/${atlas}/ptseries/${sub}/${ses}/func/${sub}_${ses_}${task}_${atlas}_desc-cleaneds0_bold.ptseries.nii
-    output_csv=parcellated/${atlas}/csv/${sub}/${ses}/func/${sub}_${ses_}${task}_${atlas}_desc-cleaneds0_meants.csv
+    cleaned_dtseries=cifti_clean/${sub}/${ses}/func/${sub}_${ses_task}_space-fsLR_den-91k_desc-cleaneds0_bold.dtseries.nii
+    output_ptseries=parcellated/${atlas}/ptseries/${sub}/${ses}/func/${sub}_${ses_task}_${atlas}_desc-cleaneds0_bold.ptseries.nii
+    output_csv=parcellated/${atlas}/csv/${sub}/${ses}/func/${sub}_${ses_task}_${atlas}_desc-cleaneds0_meants.csv
 
     mkdir -p ${DERIVED_DIR}/parcellated/${atlas}/ptseries/${sub}/${ses}/func
     mkdir -p ${DERIVED_DIR}/parcellated/${atlas}/csv/${sub}/${ses}/func
