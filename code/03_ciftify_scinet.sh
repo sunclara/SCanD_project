@@ -50,7 +50,7 @@ SUBJECTS=`sed -n -E "s/sub-(\S*)\>.*/\1/gp" ${BIDS_DIR}/participants.tsv | head 
 # export SINGULARITYENV_TEMPLATEFLOW_HOME=/home/fmriprep/.cache/templateflow
 # Make sure FS_LICENSE is defined in the container.
 export ORIG_FS_LICENSE=${BASEDIR}/templates/.freesurfer.txt
-export SINGULARITYENV_FS_LICENSE=/.freesurfer.txt
+export APPTAINERENV_FS_LICENSE=/.freesurfer.txt
 
 # # Remove IsRunning files from FreeSurfer
 # for subject in $SUBJECTS: do
@@ -61,13 +61,13 @@ parallel -j 8 "singularity run --cleanenv \
     -H $(mktemp -d -t wb-XXXXXXXXXX) \
     -B ${BIDS_DIR}:/bids \
     -B ${OUTPUT_DIR}:/derived \
-    -B ${ORIG_FS_LICENSE}:${SINGULARITYENV_FS_LICENSE} \
+    -B ${ORIG_FS_LICENSE}:${APPTAINERENV_FS_LICENSE} \
     ${SING_CONTAINER} \
       /bids /derived participant \
       --participant_label={} \
       --read-from-derivatives /derived \
       --skip-bids-validation \
-      --fs-license ${SINGULARITYENV_FS_LICENSE} \
+      --fs-license ${APPTAINERENV_FS_LICENSE} \
       --n_cpus 10" \
       ::: ${SUBJECTS}
 
