@@ -77,6 +77,7 @@ singularity run --cleanenv \
     --notrack \
     --use-syn-sdc \
     --ignore fieldmaps
+    --bids-database-dir /bids/pybids
 
 exitcode=$?
 
